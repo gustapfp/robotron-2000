@@ -33,13 +33,11 @@ const pecas = {
 };
 
 const controle = document.querySelectorAll("[data-controle]");
-
-
-
+const estatistica = document.querySelectorAll("[data-estatistica]")
 
 function somatorioAtributos(tipoDeoperação, controle) {
     const valor = controle.querySelector("[data-contador]");
-    if(tipoDeoperação === "+") {
+    if(tipoDeoperação == "+") {
         valor.value = parseInt(valor.value) + 1;
         
     }
@@ -51,7 +49,14 @@ function somatorioAtributos(tipoDeoperação, controle) {
 controle.forEach((elemento) => {
     elemento.addEventListener("click", (evento) => {
         somatorioAtributos(evento.target.textContent, evento.target.parentNode);
+        atualizaEstatistica(evento.target.dataset.peca);
     })
 });
 
+
+function atualizaEstatistica(peca) {
+    estatistica.forEach( (elemento ) => {
+        elemento.textContent = parseInt(elemento.textContent) + pecas[peca][elemento.dataset.estatistica]
+    })
+}
 
