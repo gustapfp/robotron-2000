@@ -30,4 +30,28 @@ const pecas = {
         "energia": 0,
         "velocidade": -2
     }
+};
+
+const controle = document.querySelectorAll("[data-controle]");
+
+
+
+
+function somatorioAtributos(tipoDeoperação, controle) {
+    const valor = controle.querySelector("[data-contador]");
+    if(tipoDeoperação === "+") {
+        valor.value = parseInt(valor.value) + 1;
+        
+    }
+    else {
+        valor.value = parseInt(valor.value) - 1;
+    }
 }
+
+controle.forEach((elemento) => {
+    elemento.addEventListener("click", (evento) => {
+        somatorioAtributos(evento.target.textContent, evento.target.parentNode);
+    })
+});
+
+
